@@ -25,68 +25,49 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const DisplayTodos = (props) => {
-  const [sort, setSort] = useState("active");
+  const [sort, setSort] = useState("all");
+
+  const handleSortChange = (type) => {
+    setSort(type);
+  };
+
   return (
     <div className="displaytodos">
       <div className="buttons">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setSort("active")}
+          onClick={() => handleSortChange("all")}
+          className={sort === "all" ? "active" : ""}
+        >
+          All
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => handleSortChange("active")}
+          className={sort === "active" ? "active" : ""}
         >
           Incomplete
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setSort("completed")}
+          onClick={() => handleSortChange("completed")}
+          className={sort === "completed" ? "active" : ""}
         >
           Completed
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setSort("all")}
-        >
-          All
         </motion.button>
       </div>
       <ul>
         <AnimatePresence>
-          {props.todos.length > 0 && sort === "active"
-            ? props.todos.map((item) => {
-                return (
-                  item.completed === false && (
-                    <TodoItem
-                      key={item.id}
-                      item={item}
-                      removeTodo={props.removeTodo}
-                      updateTodo={props.updateTodo}
-                      completeTodo={props.completeTodo}
-                    />
-                  )
-                );
-              })
-            : null}
-          {/* for completed items */}
-          {props.todos.length > 0 && sort === "completed"
-            ? props.todos.map((item) => {
-                return (
-                  item.completed === true && (
-                    <TodoItem
-                      key={item.id}
-                      item={item}
-                      removeTodo={props.removeTodo}
-                      updateTodo={props.updateTodo}
-                      completeTodo={props.completeTodo}
-                    />
-                  )
-                );
-              })
-            : null}
-          {/* for all items */}
-          {props.todos.length > 0 && sort === "all"
-            ? props.todos.map((item) => {
+          {props.todos.length > 0 &&
+            props.todos.map((item) => {
+              if (
+                sort === "all" ||
+                (sort === "active" && !item.completed) ||
+                (sort === "completed" && item.completed)
+              ) {
                 return (
                   <TodoItem
                     key={item.id}
@@ -96,8 +77,9 @@ const DisplayTodos = (props) => {
                     completeTodo={props.completeTodo}
                   />
                 );
-              })
-            : null}
+              }
+              return null;
+            })}
         </AnimatePresence>
       </ul>
     </div>
