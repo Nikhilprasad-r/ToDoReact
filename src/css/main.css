@@ -110,6 +110,7 @@ margin: 4px 6px;
   display: flex;
   flex-direction: column;
   background: rgb(180, 182, 218);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: radial-gradient(
     circle,
     #00ffab 0%,
@@ -136,7 +137,7 @@ margin: 4px 6px;
   border-radius: 8px;
   border: none;
   background-color: #e1ebfd;
- 
+ display:block;
   color: #271c6c;
   height: 70%;
   
