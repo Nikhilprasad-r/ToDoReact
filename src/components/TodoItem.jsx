@@ -118,7 +118,7 @@ const TodoItem = (props) => {
       {item.completed ? (
         <span className="completed">done</span>
       ) : (
-        <span className="completed">incomplete</span>
+        <span className="incomplete">incomplete</span>
       )}
     </motion.li>
   );

@@ -164,18 +164,27 @@ margin: 4px 6px;
 .card .btns button:focus {
   outline: none;
 }
+.incomplete{
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.4rem;
+  background-color:lightcoral;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
 
 .completed {
   position: absolute;
   right: 0.3rem;
   bottom: 0.4rem;
-  background-color: #867bcd;
-  border: 2px solid #272727;
-  color: #e1ebfd;
-
-  font-size: 0.8rem;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
+  background-color: green;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 @media Screen and (max-width: 640px) {
